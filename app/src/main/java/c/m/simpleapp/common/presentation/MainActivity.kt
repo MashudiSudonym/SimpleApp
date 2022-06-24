@@ -1,4 +1,4 @@
-package c.m.simpleapp
+package c.m.simpleapp.common.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import c.m.simpleapp.ui.theme.SimpleAppTheme
+import c.m.simpleapp.common.presentation.ui.theme.SimpleAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package c.m.simpleapp.ui.theme
+package c.m.simpleapp.common.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
