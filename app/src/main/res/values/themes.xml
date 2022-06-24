@@ -4,4 +4,13 @@
     <style name="Theme.SimpleApp" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>
+
+    <!--    Splash screen-->
+    <style name="Theme.SplashScreenApp" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="Theme.SplashScreenApp">
+        <item name="android:windowBackground">@drawable/ic_launcher_foreground</item>
+    </style>
 </resources>
