@@ -16,6 +16,8 @@ import kotlinx.coroutines.delay
 class SplashScreenActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+
+
             val splashScreen = installSplashScreen()
             splashScreen.setKeepOnScreenCondition { true }
         }
