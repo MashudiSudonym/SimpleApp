@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Simple App</string>
     <string name="error_unknown">Error Unknown</string>
+    <string name="error_internet_problem">Http network error</string>
 </resources>
