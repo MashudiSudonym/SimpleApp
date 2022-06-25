@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Simple App</string>
+    <string name="error_unknown">Error Unknown</string>
 </resources>
