@@ -11,6 +11,6 @@
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.SplashScreenApp">
-        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowBackground">@drawable/logo</item>
     </style>
 </resources>
