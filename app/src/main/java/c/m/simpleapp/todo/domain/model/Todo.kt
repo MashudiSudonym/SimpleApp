@@ -1,4 +1,4 @@
-package c.m.simpleapp.todos.domain.model
+package c.m.simpleapp.todo.domain.model
 
 data class Todo(
     val userId: Int,

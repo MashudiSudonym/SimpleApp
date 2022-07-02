@@ -1,14 +1,12 @@
-package c.m.simpleapp.todos.data.repository
+package c.m.simpleapp.todo.data.repository
 
 import c.m.simpleapp.R
 import c.m.simpleapp.common.util.Resource
 import c.m.simpleapp.common.util.UIText
-import c.m.simpleapp.todos.data.mapper.toTodo
-import c.m.simpleapp.todos.data.mapper.toTodos
-import c.m.simpleapp.todos.data.remote.TodosAPI
-import c.m.simpleapp.todos.domain.model.Todo
-import c.m.simpleapp.todos.domain.model.Todos
-import c.m.simpleapp.todos.domain.repository.TodosRepository
+import c.m.simpleapp.todo.data.mapper.toTodo
+import c.m.simpleapp.todo.data.remote.TodoAPI
+import c.m.simpleapp.todo.domain.model.Todo
+import c.m.simpleapp.todo.domain.repository.TodoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,13 +15,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.UnknownHostException
 
-class TodosRepositoryImpl(private val todosAPI: TodosAPI) : TodosRepository {
-    override suspend fun getTodos(): Flow<Resource<Todos>> {
+class TodoRepositoryImpl(private val todoAPI: TodoAPI) : TodoRepository {
+    override suspend fun getListTodo(): Flow<Resource<List<Todo>>> {
         return flow {
             emit(Resource.Loading())
 
             try {
-                val todosData = todosAPI.getTodos().toTodos()
+                val todosData = todoAPI.getListTodo()
 
                 emit(Resource.Success(todosData))
             } catch (e: HttpException) {
@@ -47,7 +45,7 @@ class TodosRepositoryImpl(private val todosAPI: TodosAPI) : TodosRepository {
             emit(Resource.Loading())
 
             try {
-                val todoData = todosAPI.getTodo(todoId).toTodo()
+                val todoData = todoAPI.getTodo(todoId).toTodo()
 
                 emit(Resource.Success(todoData))
             } catch (e: HttpException) {

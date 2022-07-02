@@ -1,6 +1,6 @@
-package c.m.simpleapp.todos.di
+package c.m.simpleapp.todo.di
 
-import c.m.simpleapp.todos.data.remote.TodosAPI
+import c.m.simpleapp.todo.data.remote.TodoAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    fun provideTodosAPI(retrofit: Retrofit): TodosAPI {
-        return retrofit.create(TodosAPI::class.java)
+    fun provideTodosAPI(retrofit: Retrofit): TodoAPI {
+        return retrofit.create(TodoAPI::class.java)
     }
 }
