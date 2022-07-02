@@ -1,6 +1,6 @@
 package c.m.simpleapp.todos.data.mapper
 
-import c.m.simpleapp.todos.data.remote.dao.TodosDTO
+import c.m.simpleapp.todos.data.remote.dto.TodosDTO
 import c.m.simpleapp.todos.domain.model.Todos
 
 fun TodosDTO.toTodos(): Todos {

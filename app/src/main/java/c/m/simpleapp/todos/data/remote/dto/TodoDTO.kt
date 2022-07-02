@@ -1,4 +1,4 @@
-package c.m.simpleapp.todos.data.remote.dao
+package c.m.simpleapp.todos.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 

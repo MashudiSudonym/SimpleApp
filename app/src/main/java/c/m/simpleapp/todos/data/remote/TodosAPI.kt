@@ -1,7 +1,7 @@
 package c.m.simpleapp.todos.data.remote
 
-import c.m.simpleapp.todos.data.remote.dao.TodoDTO
-import c.m.simpleapp.todos.data.remote.dao.TodosDTO
+import c.m.simpleapp.todos.data.remote.dto.TodoDTO
+import c.m.simpleapp.todos.data.remote.dto.TodosDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 
