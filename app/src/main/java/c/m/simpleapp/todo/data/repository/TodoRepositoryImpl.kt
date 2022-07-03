@@ -3,7 +3,9 @@ package c.m.simpleapp.todo.data.repository
 import c.m.simpleapp.R
 import c.m.simpleapp.common.util.Resource
 import c.m.simpleapp.common.util.UIText
+import c.m.simpleapp.todo.data.local.TodoDao
 import c.m.simpleapp.todo.data.mapper.toTodo
+import c.m.simpleapp.todo.data.mapper.toTodoEntity
 import c.m.simpleapp.todo.data.remote.TodoAPI
 import c.m.simpleapp.todo.domain.model.Todo
 import c.m.simpleapp.todo.domain.repository.TodoRepository
@@ -15,15 +17,26 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.UnknownHostException
 
-class TodoRepositoryImpl(private val todoAPI: TodoAPI) : TodoRepository {
+class TodoRepositoryImpl(private val todoAPI: TodoAPI, private val todoDao: TodoDao) :
+    TodoRepository {
     override suspend fun getListTodo(): Flow<Resource<List<Todo>>> {
         return flow {
             emit(Resource.Loading())
 
-            try {
-                val todosData = todoAPI.getListTodo()
+            // Load old to-do list from local source
+            val listTodoFromLocal = todoDao.getListTodo().map { it.toTodo() }
 
-                emit(Resource.Success(todosData))
+            // Show old to-do list when is loading ui state
+            emit(Resource.Loading(listTodoFromLocal))
+
+            try {
+                // Load to-do list from remote source
+                val listTodoDataFromRemote = todoAPI.getListTodo()
+
+                // Save to-do list from remote source to local source
+                listTodoDataFromRemote.forEach { todo ->
+                    todoDao.updateTodo(todo.id, todo.toTodoEntity())
+                }
             } catch (e: HttpException) {
                 emit(
                     Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
@@ -37,6 +50,12 @@ class TodoRepositoryImpl(private val todoAPI: TodoAPI) : TodoRepository {
                     Resource.Error(message = UIText.StringResource(R.string.error_unknown))
                 )
             }
+
+            // Load new to-do list from local source
+            val newListTodoFromLocal = todoDao.getListTodo().map { it.toTodo() }
+
+            // Show to-do list to success ui state
+            emit(Resource.Success(newListTodoFromLocal))
         }.flowOn(Dispatchers.IO)
     }
 
@@ -45,22 +64,18 @@ class TodoRepositoryImpl(private val todoAPI: TodoAPI) : TodoRepository {
             emit(Resource.Loading())
 
             try {
-                val todoData = todoAPI.getTodo(todoId).toTodo()
+                val todoDetailData = todoDao.getTodoDetail(todoId).toTodo()
 
-                emit(Resource.Success(todoData))
-            } catch (e: HttpException) {
-                emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
-                )
+                emit(Resource.Success(todoDetailData))
             } catch (e: IOException) {
                 emit(
                     Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
                 )
-            } catch (e: UnknownHostException) {
+            } catch (e: Exception) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_unknown))
+                    Resource.Error(message = UIText.DynamicString(e.toString()))
                 )
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }
