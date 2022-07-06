@@ -1,7 +1,8 @@
-package c.m.simpleapp.todo.data.local
+package c.m.simpleapp.common.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import c.m.simpleapp.todo.data.local.TodoDao
 import c.m.simpleapp.todo.data.local.entity.TodoEntity
 
 @Database(
@@ -9,6 +10,6 @@ import c.m.simpleapp.todo.data.local.entity.TodoEntity
     version = 1,
     exportSchema = false,
 )
-abstract class TodoLocalDatabase : RoomDatabase() {
+abstract class LocalDatabase : RoomDatabase() {
     abstract fun todoDao(): TodoDao
 }

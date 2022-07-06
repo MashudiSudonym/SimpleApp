@@ -1,9 +1,9 @@
-package c.m.simpleapp.todo.di
+package c.m.simpleapp.common.di
 
 import android.content.Context
 import androidx.room.Room
+import c.m.simpleapp.common.data.local.LocalDatabase
 import c.m.simpleapp.common.util.Constants
-import c.m.simpleapp.todo.data.local.TodoLocalDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +16,8 @@ import javax.inject.Singleton
 object PersistenceModule {
     @Provides
     @Singleton
-    fun provideTodoLocalDatabase(@ApplicationContext context: Context): TodoLocalDatabase {
-        return Room.databaseBuilder(context, TodoLocalDatabase::class.java, Constants.TODO_DB)
+    fun provideLocalDatabase(@ApplicationContext context: Context): LocalDatabase {
+        return Room.databaseBuilder(context, LocalDatabase::class.java, Constants.TODO_DB)
             .fallbackToDestructiveMigration()
             .build()
     }

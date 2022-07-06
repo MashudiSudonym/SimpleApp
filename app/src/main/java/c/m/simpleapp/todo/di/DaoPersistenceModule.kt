@@ -1,7 +1,7 @@
 package c.m.simpleapp.todo.di
 
+import c.m.simpleapp.common.data.local.LocalDatabase
 import c.m.simpleapp.todo.data.local.TodoDao
-import c.m.simpleapp.todo.data.local.TodoLocalDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 object DaoPersistenceModule {
     @Provides
     @Singleton
-    fun provideTodoDao(todoLocalDatabase: TodoLocalDatabase): TodoDao {
-        return todoLocalDatabase.todoDao()
+    fun provideTodoDao(localDatabase: LocalDatabase): TodoDao {
+        return localDatabase.todoDao()
     }
 }
