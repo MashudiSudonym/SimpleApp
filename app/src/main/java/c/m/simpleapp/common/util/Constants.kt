@@ -4,5 +4,5 @@ import c.m.simpleapp.BuildConfig
 
 object Constants {
     const val BASE_URL_API = BuildConfig.BASE_URL_API
-    const val TODO_DB = "todo_db"
+    const val SIMPLE_APP_DB = "simple_app_db"
 }

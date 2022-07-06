@@ -17,7 +17,7 @@ object PersistenceModule {
     @Provides
     @Singleton
     fun provideLocalDatabase(@ApplicationContext context: Context): LocalDatabase {
-        return Room.databaseBuilder(context, LocalDatabase::class.java, Constants.TODO_DB)
+        return Room.databaseBuilder(context, LocalDatabase::class.java, Constants.SIMPLE_APP_DB)
             .fallbackToDestructiveMigration()
             .build()
     }
