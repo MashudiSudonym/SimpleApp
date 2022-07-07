@@ -7,7 +7,7 @@ import c.m.simpleapp.posts.domain.model.Post
 fun PostDTO.toPostEntity(): PostEntity {
     return PostEntity(
         userId = userId,
-        postsId = id,
+        postId = id,
         title = title,
         body = body,
     )
@@ -16,7 +16,7 @@ fun PostDTO.toPostEntity(): PostEntity {
 fun PostEntity.toPost(): Post {
     return Post(
         userId = userId,
-        id = postsId,
+        id = postId,
         title = title,
         body = body,
     )

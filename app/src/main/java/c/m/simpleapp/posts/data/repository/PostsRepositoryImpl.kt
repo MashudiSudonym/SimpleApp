@@ -33,7 +33,6 @@ class PostsRepositoryImpl(private val postsAPI: PostsAPI, private val postsDao: 
                 listPostDataFromRemote.forEach { post ->
                     postsDao.updatePosts(post.id, post.toPostEntity())
                 }
-
             } catch (e: HttpException) {
                 emit(
                     Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
@@ -71,6 +70,6 @@ class PostsRepositoryImpl(private val postsAPI: PostsAPI, private val postsDao: 
                     Resource.Error(message = UIText.DynamicString(e.toString()))
                 )
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 }

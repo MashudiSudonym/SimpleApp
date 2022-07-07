@@ -11,8 +11,8 @@ data class PostEntity(
     val id: Long = 0L,
     @ColumnInfo(name = "user_id")
     val userId: Int = 0,
-    @ColumnInfo(name = "posts_id")
-    val postsId: Int = 0,
+    @ColumnInfo(name = "post_id")
+    val postId: Int = 0,
     @ColumnInfo(name = "title")
     val title: String = "",
     @ColumnInfo(name = "body")
