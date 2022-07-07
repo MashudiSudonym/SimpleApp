@@ -2,7 +2,7 @@ package c.m.simpleapp.posts.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class PostsDTO(
+data class PostDTO(
     @SerializedName("userId")
     val userId: Int,
     @SerializedName("id")

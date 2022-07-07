@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "tbl_posts")
-data class PostsEntity(
+data class PostEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     val id: Long = 0L,

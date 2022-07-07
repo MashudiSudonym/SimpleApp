@@ -1,6 +1,6 @@
 package c.m.simpleapp.posts.domain.model
 
-data class Posts(
+data class Post(
     val userId: Int,
     val id: Int,
     val title: String,

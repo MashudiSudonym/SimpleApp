@@ -1,25 +1,25 @@
 package c.m.simpleapp.posts.data.local
 
 import androidx.room.*
-import c.m.simpleapp.posts.data.local.entity.PostsEntity
+import c.m.simpleapp.posts.data.local.entity.PostEntity
 
 @Dao
 interface PostsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPosts(postsEntity: PostsEntity)
+    suspend fun insertPosts(postEntity: PostEntity)
 
     @Query("DELETE FROM tbl_posts WHERE posts_id LIKE :postsId")
     suspend fun deletePosts(postsId: Int)
 
     @Transaction
-    suspend fun updatePosts(postsId: Int, postsEntity: PostsEntity) {
+    suspend fun updatePosts(postsId: Int, postEntity: PostEntity) {
         deletePosts(postsId)
-        insertPosts(postsEntity)
+        insertPosts(postEntity)
     }
 
     @Query("SELECT * FROM tbl_posts")
-    suspend fun getListPosts(): List<PostsEntity>
+    suspend fun getListPosts(): List<PostEntity>
 
     @Query("SELECT * FROM tbl_posts WHERE posts_id LIKE :postsId")
-    suspend fun getPostsDetail(postsId: Int): PostsEntity
+    suspend fun getPostsDetail(postsId: Int): PostEntity
 }

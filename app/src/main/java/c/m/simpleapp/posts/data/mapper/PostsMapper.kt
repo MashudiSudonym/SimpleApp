@@ -1,11 +1,11 @@
 package c.m.simpleapp.posts.data.mapper
 
-import c.m.simpleapp.posts.data.local.entity.PostsEntity
-import c.m.simpleapp.posts.data.remote.dto.PostsDTO
-import c.m.simpleapp.posts.domain.model.Posts
+import c.m.simpleapp.posts.data.local.entity.PostEntity
+import c.m.simpleapp.posts.data.remote.dto.PostDTO
+import c.m.simpleapp.posts.domain.model.Post
 
-fun PostsDTO.toPostsEntity(): PostsEntity {
-    return PostsEntity(
+fun PostDTO.toPostEntity(): PostEntity {
+    return PostEntity(
         userId = userId,
         postsId = id,
         title = title,
@@ -13,8 +13,8 @@ fun PostsDTO.toPostsEntity(): PostsEntity {
     )
 }
 
-fun PostsEntity.toPosts(): Posts {
-    return Posts(
+fun PostEntity.toPost(): Post {
+    return Post(
         userId = userId,
         id = postsId,
         title = title,
