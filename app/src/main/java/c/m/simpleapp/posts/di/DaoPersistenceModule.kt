@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DaoPresistenceModule {
+object DaoPersistenceModule {
     @Provides
     @Singleton
     fun providePostsDao(localDatabase: LocalDatabase): PostsDao {
