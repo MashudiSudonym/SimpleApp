@@ -7,7 +7,7 @@ import c.m.simpleapp.photos.domain.model.Photo
 fun PhotoDTO.toPhotoEntity(): PhotoEntity {
     return PhotoEntity(
         albumId = albumId,
-        photosId = id,
+        photoId = id,
         title = title,
         url = url,
         thumbnailUrl = thumbnailUrl
@@ -17,7 +17,7 @@ fun PhotoDTO.toPhotoEntity(): PhotoEntity {
 fun PhotoEntity.toPhoto(): Photo {
     return Photo(
         albumId = albumId,
-        id = photosId,
+        id = photoId,
         title = title,
         url = url,
         thumbnailUrl = thumbnailUrl

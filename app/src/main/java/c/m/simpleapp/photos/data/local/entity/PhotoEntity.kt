@@ -11,8 +11,8 @@ data class PhotoEntity(
     val id: Long = 0L,
     @ColumnInfo(name = "album_id")
     val albumId: Int = 0,
-    @ColumnInfo(name = "photos_id")
-    val photosId: Int = 0,
+    @ColumnInfo(name = "photo_id")
+    val photoId: Int = 0,
     @ColumnInfo(name = "title")
     val title: String = "",
     @ColumnInfo(name = "url")

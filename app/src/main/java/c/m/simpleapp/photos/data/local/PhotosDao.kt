@@ -8,18 +8,18 @@ interface PhotosDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPhotos(photoEntity: PhotoEntity)
 
-    @Query("DELETE FROM tbl_photos WHERE photos_id LIKE :photosId")
-    suspend fun deletePhotos(photosId: Int)
+    @Query("DELETE FROM tbl_photos WHERE photo_id LIKE :photoId")
+    suspend fun deletePhotos(photoId: Int)
 
     @Transaction
-    suspend fun updatePhotos(photosId: Int, photoEntity: PhotoEntity) {
-        deletePhotos(photosId)
+    suspend fun updatePhotos(photoId: Int, photoEntity: PhotoEntity) {
+        deletePhotos(photoId)
         insertPhotos(photoEntity)
     }
 
     @Query("SELECT * FROM tbl_photos")
     suspend fun getListPhotos(): List<PhotoEntity>
 
-    @Query("SELECT * FROM tbl_photos WHERE photos_id LIKE :photosId")
-    suspend fun getPhotosDetail(photosId: Int): PhotoEntity
+    @Query("SELECT * FROM tbl_photos WHERE photo_id LIKE :photoId")
+    suspend fun getPhotosDetail(photoId: Int): PhotoEntity
 }
