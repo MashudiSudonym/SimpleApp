@@ -4,8 +4,9 @@ import c.m.simpleapp.common.util.Resource
 import c.m.simpleapp.todo.domain.model.Todo
 import c.m.simpleapp.todo.domain.repository.TodoRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class GetTodoDetailUseCase(private val todoRepository: TodoRepository) {
+class GetTodoDetailUseCase @Inject constructor(private val todoRepository: TodoRepository) {
     suspend operator fun invoke(todoId: Int): Flow<Resource<Todo>> {
         return todoRepository.getTodo(todoId)
     }

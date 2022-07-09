@@ -16,8 +16,12 @@ import kotlinx.coroutines.flow.flowOn
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class TodoRepositoryImpl(private val todoAPI: TodoAPI, private val todoDao: TodoDao) :
+class TodoRepositoryImpl @Inject constructor(
+    private val todoAPI: TodoAPI,
+    private val todoDao: TodoDao,
+) :
     TodoRepository {
     override suspend fun getListTodo(): Flow<Resource<List<Todo>>> {
         return flow {
