@@ -4,8 +4,9 @@ import c.m.simpleapp.common.util.Resource
 import c.m.simpleapp.photos.domain.model.Photo
 import c.m.simpleapp.photos.domain.repository.PhotosRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class GetPhotoDetailUseCase(private val photosRepository: PhotosRepository) {
+class GetPhotoDetailUseCase @Inject constructor(private val photosRepository: PhotosRepository) {
     suspend operator fun invoke(photoId: Int): Flow<Resource<Photo>> {
         return photosRepository.getPhoto(photoId)
     }

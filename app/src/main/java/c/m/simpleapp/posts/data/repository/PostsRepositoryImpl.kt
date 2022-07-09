@@ -16,8 +16,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.io.IOException
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class PostsRepositoryImpl(private val postsAPI: PostsAPI, private val postsDao: PostsDao) :
+class PostsRepositoryImpl @Inject constructor(
+    private val postsAPI: PostsAPI,
+    private val postsDao: PostsDao,
+) :
     PostsRepository {
     override suspend fun getListPosts(): Flow<Resource<List<Post>>> {
         return flow {

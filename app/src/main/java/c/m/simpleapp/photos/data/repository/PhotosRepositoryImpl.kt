@@ -16,8 +16,12 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.io.IOException
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class PhotosRepositoryImpl(private val photosAPI: PhotosAPI, private val photosDao: PhotosDao) :
+class PhotosRepositoryImpl @Inject constructor(
+    private val photosAPI: PhotosAPI,
+    private val photosDao: PhotosDao,
+) :
     PhotosRepository {
     override suspend fun getListPhotos(): Flow<Resource<List<Photo>>> {
         return flow {
