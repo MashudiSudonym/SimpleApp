@@ -94,8 +94,6 @@ dependencies {
     //noinspection GradleDependency
     implementation "androidx.compose.material:material-icons-extended:1.1.1"
     implementation "com.google.accompanist:accompanist-swiperefresh:0.24.12-rc"
-    implementation "com.google.accompanist:accompanist-insets:0.24.12-rc"
-    implementation "com.google.accompanist:accompanist-insets-ui:0.24.12-rc"
 
     // Work Manager
     implementation "androidx.work:work-runtime-ktx:2.7.1"
