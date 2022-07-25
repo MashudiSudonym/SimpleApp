@@ -2,4 +2,7 @@
     <string name="app_name">Simple App</string>
     <string name="error_unknown">Error Unknown</string>
     <string name="error_internet_problem">Http network error</string>
+    <string name="todo_screen">Todo</string>
+    <string name="posts_screen">Posts</string>
+    <string name="photos_screen">Photos</string>
 </resources>
