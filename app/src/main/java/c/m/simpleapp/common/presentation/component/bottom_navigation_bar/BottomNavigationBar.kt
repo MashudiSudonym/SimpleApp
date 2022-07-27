@@ -1,4 +1,4 @@
-package c.m.simpleapp.common.presentation.component
+package c.m.simpleapp.common.presentation.component.bottom_navigation_bar
 
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -14,12 +14,12 @@ import c.m.simpleapp.startAppDestination
 import com.ramcosta.composedestinations.navigation.navigate
 
 @Composable
-fun BottomBar(navController: NavController) {
+fun BottomNavigationBar(navController: NavController) {
     val currentDestination: Destination =
         navController.appCurrentDestinationAsState().value ?: NavGraphs.root.startAppDestination
 
     BottomNavigation {
-        BottomBarDestination.values().forEach { destination ->
+        BottomNavigationBarDestination.values().forEach { destination ->
             BottomNavigationItem(
                 selected = currentDestination == destination.direction,
                 onClick = {

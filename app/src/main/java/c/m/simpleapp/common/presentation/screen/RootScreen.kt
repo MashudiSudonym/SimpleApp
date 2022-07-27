@@ -5,7 +5,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import c.m.simpleapp.NavGraphs
-import c.m.simpleapp.common.presentation.component.BottomBar
+import c.m.simpleapp.common.presentation.component.bottom_navigation_bar.BottomNavigationBar
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
 
@@ -17,7 +17,7 @@ fun RootScreen() {
 
     Scaffold(
         bottomBar = {
-            BottomBar(navController = navController)
+            BottomNavigationBar(navController = navController)
         }) {
         DestinationsNavHost(navController = navController, navGraph = NavGraphs.root)
     }

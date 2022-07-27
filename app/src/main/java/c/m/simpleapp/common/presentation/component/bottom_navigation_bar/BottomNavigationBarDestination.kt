@@ -1,4 +1,4 @@
-package c.m.simpleapp.common.presentation.component
+package c.m.simpleapp.common.presentation.component.bottom_navigation_bar
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -12,7 +12,7 @@ import c.m.simpleapp.destinations.PhotosScreenDestination
 import c.m.simpleapp.destinations.PostsScreenDestination
 import c.m.simpleapp.destinations.TodoScreenDestination
 
-enum class BottomBarDestination(
+enum class BottomNavigationBarDestination(
     val direction: DirectionDestination,
     val icon: ImageVector,
     @StringRes val label: Int,
