@@ -10,7 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import c.m.simpleapp.common.presentation.screen.RootScreen
 import c.m.simpleapp.common.presentation.ui.theme.SimpleAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
