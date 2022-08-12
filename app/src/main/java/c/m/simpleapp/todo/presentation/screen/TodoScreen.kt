@@ -8,8 +8,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import c.m.simpleapp.R
 import c.m.simpleapp.common.presentation.component.custom.AppBarCustom
 import c.m.simpleapp.common.presentation.component.custom.BottomNavigationContentWrapperCustom
 import com.ramcosta.composedestinations.annotation.Destination
@@ -23,7 +25,7 @@ fun TodoScreen(navigator: DestinationsNavigator) {
     BottomNavigationContentWrapperCustom {
         Scaffold(
             topBar = {
-                AppBarCustom(title = "Todo")
+                AppBarCustom(title = stringResource(id = R.string.todo_screen))
             },
             backgroundColor = MaterialTheme.colors.primary
         ) { padding ->
