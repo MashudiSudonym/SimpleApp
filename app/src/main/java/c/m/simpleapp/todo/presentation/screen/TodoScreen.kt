@@ -2,6 +2,7 @@ package c.m.simpleapp.todo.presentation.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +25,7 @@ fun TodoScreen(navigator: DestinationsNavigator) {
             topBar = {
                 AppBarCustom(title = "Todo")
             },
+            backgroundColor = MaterialTheme.colors.primary
         ) { padding ->
             LazyColumn(
                 modifier = Modifier
