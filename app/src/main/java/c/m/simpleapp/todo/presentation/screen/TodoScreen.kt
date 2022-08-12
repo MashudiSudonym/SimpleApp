@@ -2,6 +2,7 @@ package c.m.simpleapp.todo.presentation.screen
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -18,8 +19,11 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Destination
 @Composable
 fun TodoScreen(navigator: DestinationsNavigator, todoViewModel: TodoViewModel = hiltViewModel()) {
+    val scaffoldState = rememberScaffoldState()
+
     BottomNavigationContentWrapperCustom {
         Scaffold(
+            scaffoldState = scaffoldState,
             topBar = {
                 AppBarCustom(title = stringResource(id = R.string.todo_screen))
             },
