@@ -42,7 +42,9 @@ fun TodoScreen(navigator: DestinationsNavigator) {
             ) {
                 item {
                     for (i in 1..100) {
-                        Text("Hello $i", modifier = Modifier.padding(16.dp))
+                        Text("Hello $i",
+                            modifier = Modifier.padding(16.dp),
+                            color = MaterialTheme.colors.surface)
                     }
                 }
             }

@@ -6,18 +6,21 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
-    primary = Green200,
-    primaryVariant = Green700,
-    secondary = Yellow200,
+    primary = ThirdColor,
+    primaryVariant = ThirdColor,
+    secondary = SecondColor,
+    surface = Color.White
 )
 
 private val LightColorPalette = lightColors(
-    primary = Green500,
-    primaryVariant = Green700,
-    secondary = Yellow200
+    primary = FirstColor,
+    primaryVariant = FirstVariantColor,
+    secondary = SecondColor,
+    surface = ThirdColor
 
     /* Other default colors to override
     background = Color.White,
@@ -41,7 +44,7 @@ fun SimpleAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composa
     SideEffect {
         systemUIController.setStatusBarColor(
             color = colors.primary,
-            darkIcons = darkTheme
+            darkIcons = !darkTheme
         )
         systemUIController.setNavigationBarColor(
             color = colors.primary

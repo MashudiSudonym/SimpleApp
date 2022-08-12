@@ -1,7 +1,7 @@
 <resources>
 
     <style name="SplashScreenTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenBackground">@color/third_color</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/bg_splash_12</item>
         <item name="windowSplashScreenAnimationDuration">800</item>
         <item name="postSplashScreenTheme">@style/Theme.SplashScreenApp</item>
