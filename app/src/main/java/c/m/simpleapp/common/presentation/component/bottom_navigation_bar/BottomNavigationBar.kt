@@ -1,9 +1,6 @@
 package c.m.simpleapp.common.presentation.component.bottom_navigation_bar
 
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -18,7 +15,8 @@ fun BottomNavigationBar(navController: NavController) {
     val currentDestination: Destination =
         navController.appCurrentDestinationAsState().value ?: NavGraphs.root.startAppDestination
 
-    BottomNavigation {
+    BottomNavigation(backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.surface) {
         BottomNavigationBarDestination.values().forEach { destination ->
             BottomNavigationItem(
                 selected = currentDestination == destination.direction,
