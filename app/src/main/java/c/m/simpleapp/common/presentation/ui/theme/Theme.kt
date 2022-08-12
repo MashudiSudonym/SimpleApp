@@ -6,14 +6,12 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = Green200,
     primaryVariant = Green700,
     secondary = Yellow200,
-    onBackground = Color.White
 )
 
 private val LightColorPalette = lightColors(
@@ -39,12 +37,11 @@ fun SimpleAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composa
         LightColorPalette
     }
     val systemUIController = rememberSystemUiController()
-    val useDarkIcon = MaterialTheme.colors.isLight
 
     SideEffect {
         systemUIController.setStatusBarColor(
             color = colors.primary,
-            darkIcons = useDarkIcon
+            darkIcons = darkTheme
         )
         systemUIController.setNavigationBarColor(
             color = colors.primary
