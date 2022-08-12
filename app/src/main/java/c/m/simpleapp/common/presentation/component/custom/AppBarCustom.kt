@@ -22,7 +22,7 @@ fun AppBarCustom(
     backgroundColor: Color = MaterialTheme.colors.primary,
     textColor: Color = MaterialTheme.colors.surface,
 ) {
-    TopAppBar(modifier = modifier, backgroundColor = backgroundColor) {
+    TopAppBar(modifier = modifier, backgroundColor = backgroundColor, elevation = 0.dp) {
         Spacer(modifier = Modifier.size(16.dp))
         Text(
             text = title,
