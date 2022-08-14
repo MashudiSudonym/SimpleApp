@@ -38,23 +38,25 @@ class PhotosRepositoryImpl @Inject constructor(
                     photosDao.updatePhotos(photo.id, photo.toPhotoEntity())
                 }
 
+                val newListPhotoFromLocal = photosDao.getListPhotos().map { it.toPhoto() }
+
+                emit(Resource.Success(newListPhotoFromLocal))
             } catch (e: HttpException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem),
+                        data = listPhotoFromLocal)
                 )
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem),
+                        data = listPhotoFromLocal)
                 )
             } catch (e: UnknownHostException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_unknown))
+                    Resource.Error(message = UIText.StringResource(R.string.error_unknown),
+                        data = listPhotoFromLocal)
                 )
             }
-
-            val newListPhotoFromLocal = photosDao.getListPhotos().map { it.toPhoto() }
-
-            emit(Resource.Success(newListPhotoFromLocal))
         }.flowOn(Dispatchers.IO)
     }
 
@@ -68,11 +70,13 @@ class PhotosRepositoryImpl @Inject constructor(
                 emit(Resource.Success(photoDetailData))
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()))
+                    Resource.Error(message = UIText.DynamicString(e.toString()),
+                        data = photoDetailData)
                 )
             } catch (e: Exception) {
                 emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()))
+                    Resource.Error(message = UIText.DynamicString(e.toString()),
+                        data = photoDetailData)
                 )
             }
         }.flowOn(Dispatchers.IO)

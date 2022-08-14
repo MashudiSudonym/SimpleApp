@@ -37,23 +37,26 @@ class PostsRepositoryImpl @Inject constructor(
                 listPostDataFromRemote.forEach { post ->
                     postsDao.updatePosts(post.id, post.toPostEntity())
                 }
+
+                val newListPostDataFromLocal = postsDao.getListPosts().map { it.toPost() }
+
+                emit(Resource.Success(newListPostDataFromLocal))
             } catch (e: HttpException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem),
+                        data = listPostFromLocal)
                 )
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem),
+                        data = listPostFromLocal)
                 )
             } catch (e: UnknownHostException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_unknown))
+                    Resource.Error(message = UIText.StringResource(R.string.error_unknown),
+                        data = listPostFromLocal)
                 )
             }
-
-            val newListPostDataFromLocal = postsDao.getListPosts().map { it.toPost() }
-
-            emit(Resource.Success(newListPostDataFromLocal))
         }.flowOn(Dispatchers.IO)
     }
 
@@ -67,11 +70,13 @@ class PostsRepositoryImpl @Inject constructor(
                 emit(Resource.Success(postDetailData))
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()))
+                    Resource.Error(message = UIText.DynamicString(e.toString()),
+                        data = postDetailData)
                 )
             } catch (e: Exception) {
                 emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()))
+                    Resource.Error(message = UIText.DynamicString(e.toString()),
+                        data = postDetailData)
                 )
             }
         }.flowOn(Dispatchers.IO)
