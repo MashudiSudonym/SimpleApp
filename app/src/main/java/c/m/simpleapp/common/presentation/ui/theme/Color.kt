@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 //val Green500 = Color(0xFF4CAF50)
 //val Green700 = Color(0xFF388E3C)
 //val Yellow200 = Color(0xFFFFF59D)
-val FirstColor = Color(0xFFFAF7ED)
+val FirstColor = Color(0xFFFFF5D3)
 val FirstVariantColor = Color(0xFFFDEDB6)
 val SecondColor = Color(0xFFB3DDC6)
 val ThirdColor = Color(0xFF2C2C2C)
