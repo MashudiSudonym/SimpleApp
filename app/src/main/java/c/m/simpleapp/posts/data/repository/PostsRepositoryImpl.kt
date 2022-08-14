@@ -59,15 +59,15 @@ class PostsRepositoryImpl @Inject constructor(
 
     override suspend fun getPost(postId: Int): Flow<Resource<Post>> {
         return flow {
-            emit(Resource.Loading())
+            val postDetailData = postsDao.getPostsDetail(postId).toPost()
+
+            emit(Resource.Loading(postDetailData))
 
             try {
-                val postDetailData = postsDao.getPostsDetail(postId).toPost()
-
                 emit(Resource.Success(postDetailData))
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.DynamicString(e.toString()))
                 )
             } catch (e: Exception) {
                 emit(

@@ -25,8 +25,6 @@ class TodoRepositoryImpl @Inject constructor(
     TodoRepository {
     override suspend fun getListTodo(): Flow<Resource<List<Todo>>> {
         return flow {
-            emit(Resource.Loading())
-
             // Load old to-do list from local source
             val listTodoFromLocal = todoDao.getListTodo().map { it.toTodo() }
 
@@ -65,15 +63,15 @@ class TodoRepositoryImpl @Inject constructor(
 
     override suspend fun getTodo(todoId: Int): Flow<Resource<Todo>> {
         return flow {
-            emit(Resource.Loading())
+            val todoDetailData = todoDao.getTodoDetail(todoId).toTodo()
+
+            emit(Resource.Loading(todoDetailData))
 
             try {
-                val todoDetailData = todoDao.getTodoDetail(todoId).toTodo()
-
                 emit(Resource.Success(todoDetailData))
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.DynamicString(e.toString()))
                 )
             } catch (e: Exception) {
                 emit(

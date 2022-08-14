@@ -60,15 +60,15 @@ class PhotosRepositoryImpl @Inject constructor(
 
     override suspend fun getPhoto(photoId: Int): Flow<Resource<Photo>> {
         return flow {
-            emit(Resource.Loading())
+            val photoDetailData = photosDao.getPhotosDetail(photoId).toPhoto()
+
+            emit(Resource.Loading(photoDetailData))
 
             try {
-                val photoDetailData = photosDao.getPhotosDetail(photoId).toPhoto()
-
                 emit(Resource.Success(photoDetailData))
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.DynamicString(e.toString()))
                 )
             } catch (e: Exception) {
                 emit(
