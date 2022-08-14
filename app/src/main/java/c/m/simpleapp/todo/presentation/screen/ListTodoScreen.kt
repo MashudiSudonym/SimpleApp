@@ -17,7 +17,7 @@ import c.m.simpleapp.R
 import c.m.simpleapp.common.presentation.component.custom.AppBarCustom
 import c.m.simpleapp.common.presentation.component.custom.BottomNavigationContentWrapperCustom
 import c.m.simpleapp.common.presentation.component.custom.LocalContentBanner
-import c.m.simpleapp.todo.presentation.component.TodoContent
+import c.m.simpleapp.todo.presentation.component.ListTodoContent
 import c.m.simpleapp.todo.presentation.event.TodoUIStatusEvent
 import c.m.simpleapp.todo.presentation.view_model.TodoViewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -27,7 +27,10 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @RootNavGraph(start = true)
 @Destination
 @Composable
-fun TodoScreen(navigator: DestinationsNavigator, todoViewModel: TodoViewModel = hiltViewModel()) {
+fun ListTodoScreen(
+    navigator: DestinationsNavigator,
+    todoViewModel: TodoViewModel = hiltViewModel(),
+) {
     val scaffoldState = rememberScaffoldState()
     val context = LocalContext.current
     val listTodoUIState by todoViewModel.listTodoUIState.collectAsState()
@@ -57,7 +60,9 @@ fun TodoScreen(navigator: DestinationsNavigator, todoViewModel: TodoViewModel = 
                 if (listTodoUIState.isLoading || listTodoUIState.isError) {
                     LocalContentBanner()
                 }
-                TodoContent(padding = padding, listTodoUIState)
+
+                // list todos Content UI
+                ListTodoContent(padding = padding, listTodoUIState, navigator)
             }
         }
     }

@@ -10,9 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import c.m.simpleapp.todo.presentation.state.ListTodoUIState
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
-fun TodoContent(padding: PaddingValues, listTodoUIState: ListTodoUIState) {
+fun ListTodoContent(
+    padding: PaddingValues,
+    listTodoUIState: ListTodoUIState,
+    navigator: DestinationsNavigator,
+) {
     LazyColumn(
         modifier = Modifier
             .padding(
