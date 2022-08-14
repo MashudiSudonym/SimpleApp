@@ -39,25 +39,28 @@ class TodoRepositoryImpl @Inject constructor(
                 listTodoDataFromRemote.forEach { todo ->
                     todoDao.updateTodo(todo.id, todo.toTodoEntity())
                 }
+
+                // Load new to-do list from local source
+                val newListTodoFromLocal = todoDao.getListTodo().map { it.toTodo() }
+
+                // Show to-do list to success ui state
+                emit(Resource.Success(newListTodoFromLocal))
             } catch (e: HttpException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem),
+                        data = listTodoFromLocal)
                 )
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem))
+                    Resource.Error(message = UIText.StringResource(R.string.error_internet_problem),
+                        data = listTodoFromLocal)
                 )
             } catch (e: UnknownHostException) {
                 emit(
-                    Resource.Error(message = UIText.StringResource(R.string.error_unknown))
+                    Resource.Error(message = UIText.StringResource(R.string.error_unknown),
+                        data = listTodoFromLocal)
                 )
             }
-
-            // Load new to-do list from local source
-            val newListTodoFromLocal = todoDao.getListTodo().map { it.toTodo() }
-
-            // Show to-do list to success ui state
-            emit(Resource.Success(newListTodoFromLocal))
         }.flowOn(Dispatchers.IO)
     }
 
@@ -71,11 +74,13 @@ class TodoRepositoryImpl @Inject constructor(
                 emit(Resource.Success(todoDetailData))
             } catch (e: IOException) {
                 emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()))
+                    Resource.Error(message = UIText.DynamicString(e.toString()),
+                        data = todoDetailData)
                 )
             } catch (e: Exception) {
                 emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()))
+                    Resource.Error(message = UIText.DynamicString(e.toString()),
+                        data = todoDetailData)
                 )
             }
         }.flowOn(Dispatchers.IO)
