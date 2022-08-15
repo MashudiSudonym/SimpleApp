@@ -8,9 +8,9 @@ import androidx.compose.material.icons.filled.PhotoAlbum
 import androidx.compose.ui.graphics.vector.ImageVector
 import c.m.simpleapp.R
 import c.m.simpleapp.destinations.DirectionDestination
+import c.m.simpleapp.destinations.ListTodoScreenDestination
 import c.m.simpleapp.destinations.PhotosScreenDestination
 import c.m.simpleapp.destinations.PostsScreenDestination
-import c.m.simpleapp.destinations.TodoScreenDestination
 
 enum class BottomNavigationBarDestination(
     val direction: DirectionDestination,
@@ -18,7 +18,7 @@ enum class BottomNavigationBarDestination(
     @StringRes val label: Int,
 ) {
     Todo(
-        TodoScreenDestination,
+        ListTodoScreenDestination,
         Icons.Filled.CalendarToday,
         R.string.todo_screen,
     ),
