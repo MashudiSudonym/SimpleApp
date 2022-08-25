@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -55,6 +56,7 @@ class TodoViewModel @Inject constructor(
                         )
                     }
                     is Resource.Success -> _listTodoUIState.update {
+                        Timber.w(result.data.toString())
                         it.copy(
                             isLoading = false,
                             isError = false,

@@ -1,7 +1,7 @@
 package c.m.simpleapp.todo.presentation.screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.hilt.navigation.compose.hiltViewModel
 import c.m.simpleapp.R
 import c.m.simpleapp.common.presentation.component.custom.AppBarCustom
@@ -58,11 +59,25 @@ fun ListTodoScreen(
             Column(modifier = Modifier.fillMaxSize()) {
                 // if state data on loading or on error, show banner local content
                 if (listTodoUIState.isLoading || listTodoUIState.isError) {
-                    LocalContentBanner()
+                    LocalContentBanner(modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = MaterialTheme.colors.secondary))
                 }
 
                 // list todos Content UI
-                ListTodoContent(padding = padding, listTodoUIState, navigator)
+                ListTodoContent(
+                    modifier = Modifier
+                        .padding(
+                            start = padding.calculateStartPadding(
+                                layoutDirection = LayoutDirection.Ltr),
+                            end = padding.calculateEndPadding(layoutDirection = LayoutDirection.Ltr),
+                            top = padding.calculateTopPadding(),
+                            bottom = padding.calculateBottomPadding()
+                        )
+                        .fillMaxSize(),
+                    listTodoUIState = listTodoUIState,
+                    navigator = navigator,
+                )
             }
         }
     }

@@ -14,10 +14,8 @@ import androidx.compose.ui.unit.dp
 import c.m.simpleapp.common.presentation.ui.theme.SimpleAppTheme
 
 @Composable
-fun LocalContentBanner() {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .background(color = MaterialTheme.colors.secondary)) {
+fun LocalContentBanner(modifier: Modifier) {
+    Box(modifier = modifier) {
         Text(
             modifier = Modifier.padding(16.dp),
             text = "This data from local content",
@@ -31,7 +29,9 @@ fun LocalContentBanner() {
 private fun LocalContentAlertPreview() {
     SimpleAppTheme {
         Surface {
-            LocalContentBanner()
+            LocalContentBanner(modifier = Modifier
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colors.secondary))
         }
     }
 }
