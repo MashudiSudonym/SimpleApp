@@ -23,7 +23,7 @@ fun ListTodoContent(
     LazyColumn(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceBetween,
     ) {
         items(listTodoUIState.todoItems) { data ->
             CardTodoItem(

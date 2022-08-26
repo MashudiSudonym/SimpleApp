@@ -34,7 +34,7 @@ fun CardTodoItem(
                 color = MaterialTheme.colors.surface,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
-                modifier = Modifier.weight(1F)
+                modifier = Modifier.weight(1F),
             )
             Spacer(modifier = Modifier.weight(1F))
             Icon(
@@ -44,7 +44,7 @@ fun CardTodoItem(
                     Icons.Default.RadioButtonUnchecked
                 },
                 contentDescription = null,
-                tint = MaterialTheme.colors.surface
+                tint = MaterialTheme.colors.surface,
             )
         }
     }

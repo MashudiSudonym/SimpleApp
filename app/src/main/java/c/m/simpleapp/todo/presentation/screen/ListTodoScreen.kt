@@ -59,9 +59,11 @@ fun ListTodoScreen(
             Column(modifier = Modifier.fillMaxSize()) {
                 // if state data on loading or on error, show banner local content
                 if (listTodoUIState.isLoading || listTodoUIState.isError) {
-                    LocalContentBanner(modifier = Modifier
-                        .fillMaxWidth()
-                        .background(color = MaterialTheme.colors.secondary))
+                    LocalContentBanner(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(color = MaterialTheme.colors.secondary),
+                    )
                 }
 
                 // list todos Content UI
@@ -69,10 +71,11 @@ fun ListTodoScreen(
                     modifier = Modifier
                         .padding(
                             start = padding.calculateStartPadding(
-                                layoutDirection = LayoutDirection.Ltr),
+                                layoutDirection = LayoutDirection.Ltr
+                            ),
                             end = padding.calculateEndPadding(layoutDirection = LayoutDirection.Ltr),
                             top = padding.calculateTopPadding(),
-                            bottom = padding.calculateBottomPadding()
+                            bottom = padding.calculateBottomPadding(),
                         )
                         .fillMaxSize(),
                     listTodoUIState = listTodoUIState,
