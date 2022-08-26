@@ -8,4 +8,5 @@ data class ListTodoUIState(
     val isError: Boolean = false,
     val todoItems: List<Todo> = emptyList(),
     val errorMessage: UIText? = null,
+    val isRefresh: Boolean = false,
 )

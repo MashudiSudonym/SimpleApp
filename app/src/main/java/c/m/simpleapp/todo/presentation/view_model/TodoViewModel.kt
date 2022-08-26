@@ -33,6 +33,10 @@ class TodoViewModel @Inject constructor(
         getListTodo()
     }
 
+    fun getListTodoFromSwipeRefresh() {
+        getListTodo()
+    }
+
     private fun getListTodo() {
         viewModelScope.launch {
             getListTodoUseCase().collect { result ->
@@ -43,7 +47,8 @@ class TodoViewModel @Inject constructor(
                                 isLoading = false,
                                 isError = true,
                                 todoItems = result.data ?: emptyList(),
-                                errorMessage = result.message
+                                errorMessage = result.message,
+                                isRefresh = false
                             )
                         }
                         todoUIStatusEventChannel.send(TodoUIStatusEvent.Error)
@@ -52,7 +57,8 @@ class TodoViewModel @Inject constructor(
                         it.copy(
                             isLoading = true,
                             isError = false,
-                            todoItems = result.data ?: emptyList()
+                            todoItems = result.data ?: emptyList(),
+                            isRefresh = true
                         )
                     }
                     is Resource.Success -> _listTodoUIState.update {
@@ -60,7 +66,8 @@ class TodoViewModel @Inject constructor(
                         it.copy(
                             isLoading = false,
                             isError = false,
-                            todoItems = result.data ?: emptyList()
+                            todoItems = result.data ?: emptyList(),
+                            isRefresh = false
                         )
                     }
                 }

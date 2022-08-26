@@ -16,14 +16,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.hilt.navigation.compose.hiltViewModel
 import c.m.simpleapp.R
-import c.m.simpleapp.common.presentation.component.custom.AppBarCustom
-import c.m.simpleapp.common.presentation.component.custom.BottomNavigationContentWrapperCustom
-import c.m.simpleapp.common.presentation.component.custom.LocalContentBanner
-import c.m.simpleapp.common.presentation.component.custom.SimpleCustomSnackBar
+import c.m.simpleapp.common.presentation.component.custom.*
 import c.m.simpleapp.common.util.DynamicBackgroundColor
 import c.m.simpleapp.todo.presentation.component.ListTodoContent
 import c.m.simpleapp.todo.presentation.event.TodoUIStatusEvent
 import c.m.simpleapp.todo.presentation.view_model.TodoViewModel
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -78,21 +77,28 @@ fun ListTodoScreen(
                     )
                 }
 
-                // list todos Content UI
-                ListTodoContent(
-                    modifier = Modifier
-                        .padding(
-                            start = padding.calculateStartPadding(
-                                layoutDirection = LayoutDirection.Ltr
-                            ),
-                            end = padding.calculateEndPadding(layoutDirection = LayoutDirection.Ltr),
-                            top = padding.calculateTopPadding(),
-                            bottom = padding.calculateBottomPadding(),
-                        )
-                        .fillMaxSize(),
-                    listTodoUIState = listTodoUIState,
-                    navigator = navigator,
-                )
+                // swipe refresh
+                SwipeRefresh(
+                    state = rememberSwipeRefreshState(isRefreshing = listTodoUIState.isRefresh),
+                    onRefresh = { todoViewModel.getListTodoFromSwipeRefresh() },
+                    indicator = { state, trigger ->
+                        SimpleCustomSwipeRefreshIndicator(state, trigger)
+                    },
+                ) {
+                    // list todos Content UI
+                    ListTodoContent(
+                        modifier = Modifier
+                            .padding(
+                                start = padding.calculateStartPadding(layoutDirection = LayoutDirection.Ltr),
+                                end = padding.calculateEndPadding(layoutDirection = LayoutDirection.Ltr),
+                                top = padding.calculateTopPadding(),
+                                bottom = padding.calculateBottomPadding(),
+                            )
+                            .fillMaxSize(),
+                        listTodoUIState = listTodoUIState,
+                        navigator = navigator,
+                    )
+                }
             }
         }
     }
