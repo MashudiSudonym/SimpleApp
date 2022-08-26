@@ -6,4 +6,5 @@
     <string name="posts_screen">Posts</string>
     <string name="photos_screen">Photos</string>
     <string name="loading">Loading</string>
+    <string name="local_content_banner_text">This data from local content</string>
 </resources>
