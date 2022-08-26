@@ -1,6 +1,7 @@
 package c.m.simpleapp.todo.presentation.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -18,6 +19,8 @@ import c.m.simpleapp.R
 import c.m.simpleapp.common.presentation.component.custom.AppBarCustom
 import c.m.simpleapp.common.presentation.component.custom.BottomNavigationContentWrapperCustom
 import c.m.simpleapp.common.presentation.component.custom.LocalContentBanner
+import c.m.simpleapp.common.presentation.component.custom.SimpleCustomSnackBar
+import c.m.simpleapp.common.util.DynamicBackgroundColor
 import c.m.simpleapp.todo.presentation.component.ListTodoContent
 import c.m.simpleapp.todo.presentation.event.TodoUIStatusEvent
 import c.m.simpleapp.todo.presentation.view_model.TodoViewModel
@@ -40,6 +43,9 @@ fun ListTodoScreen(
     BottomNavigationContentWrapperCustom {
         Scaffold(
             scaffoldState = scaffoldState,
+            snackbarHost = { snackbarHostState ->
+                SimpleCustomSnackBar(snackbarHostState)
+            },
             topBar = {
                 AppBarCustom(title = stringResource(id = R.string.todo_screen))
             },
@@ -62,7 +68,13 @@ fun ListTodoScreen(
                     LocalContentBanner(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(color = MaterialTheme.colors.secondary),
+                            .background(
+                                color = DynamicBackgroundColor(
+                                    darkTheme = isSystemInDarkTheme(),
+                                    onDark = MaterialTheme.colors.secondary,
+                                    onLight = MaterialTheme.colors.surface,
+                                )
+                            ),
                     )
                 }
 
