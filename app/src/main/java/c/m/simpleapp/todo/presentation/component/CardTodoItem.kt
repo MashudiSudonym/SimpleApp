@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.RadioButtonUnchecked
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -31,8 +32,11 @@ fun CardTodoItem(
                 text = title,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.surface,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                modifier = Modifier.weight(1F)
             )
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.weight(1F))
             Icon(
                 imageVector = if (complete) {
                     Icons.Default.RadioButtonChecked
@@ -58,7 +62,7 @@ private fun CardTodoItemPreview() {
                     .clickable { },
                 backgroundColor = MaterialTheme.colors.primary,
                 elevation = 4.dp,
-                title = "Todo 1",
+                title = "laboriosan mollitia et enim quasi adapisci wuinasnalsnl",
                 complete = true,
             )
         }

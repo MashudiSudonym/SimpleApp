@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,19 +25,17 @@ fun ListTodoContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        item {
-            for (i in 1..100) {
-                CardTodoItem(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                        .clickable { },
-                    backgroundColor = MaterialTheme.colors.primary,
-                    elevation = 4.dp,
-                    title = "Todo $i",
-                    complete = i == i.mod(2),
-                )
-            }
+        items(listTodoUIState.todoItems) { data ->
+            CardTodoItem(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .clickable { },
+                elevation = 4.dp,
+                backgroundColor = MaterialTheme.colors.primary,
+                title = data.title,
+                complete = data.completed,
+            )
         }
     }
 }
