@@ -11,8 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import c.m.simpleapp.destinations.ListTodoScreenDestination
+import c.m.simpleapp.destinations.TodoDetailScreenDestination
 import c.m.simpleapp.todo.presentation.state.ListTodoUIState
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.navigation.popUpTo
 
 @Composable
 fun ListTodoContent(
@@ -30,7 +33,11 @@ fun ListTodoContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .clickable { },
+                    .clickable {
+                        navigator.navigate(TodoDetailScreenDestination) {
+                            popUpTo(ListTodoScreenDestination)
+                        }
+                    },
                 elevation = 4.dp,
                 backgroundColor = MaterialTheme.colors.primary,
                 title = data.title,
