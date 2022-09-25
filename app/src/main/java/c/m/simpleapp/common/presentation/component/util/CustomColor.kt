@@ -1,4 +1,4 @@
-package c.m.simpleapp.common.util
+package c.m.simpleapp.common.presentation.component.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -10,8 +10,8 @@ import androidx.compose.ui.graphics.Color
 
 // If you need dynamic background color on dark theme and light theme for ui component
 @Composable
-fun DynamicBackgroundColor(darkTheme: Boolean, onDark: Color, onLight: Color): Color =
-    if (darkTheme) {
+fun AdaptiveCustomColor(isDarkTheme: Boolean, onDark: Color, onLight: Color): Color =
+    if (isDarkTheme) {
         onDark
     } else {
         onLight

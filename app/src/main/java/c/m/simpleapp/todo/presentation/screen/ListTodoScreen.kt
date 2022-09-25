@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.hilt.navigation.compose.hiltViewModel
 import c.m.simpleapp.R
 import c.m.simpleapp.common.presentation.component.custom.*
-import c.m.simpleapp.common.util.DynamicBackgroundColor
+import c.m.simpleapp.common.presentation.component.util.AdaptiveCustomColor
 import c.m.simpleapp.todo.presentation.component.ListTodoContent
 import c.m.simpleapp.todo.presentation.event.TodoUIStatusEvent
 import c.m.simpleapp.todo.presentation.view_model.TodoViewModel
@@ -63,16 +63,18 @@ fun ListTodoScreen(
 
             Column(modifier = Modifier.fillMaxSize()) {
                 // if state data on loading or on error, show banner local content
-                if (listTodoUIState.isLoading || listTodoUIState.isError) {
+                val isNotSuccessState = listTodoUIState.isLoading || listTodoUIState.isError
+
+                if (isNotSuccessState) {
                     LocalContentBanner(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(
-                                color = DynamicBackgroundColor(
-                                    darkTheme = isSystemInDarkTheme(),
+                                color = AdaptiveCustomColor(
+                                    isDarkTheme = isSystemInDarkTheme(),
                                     onDark = MaterialTheme.colors.secondary,
                                     onLight = MaterialTheme.colors.surface,
-                                )
+                                ),
                             ),
                     )
                 }
