@@ -63,26 +63,4 @@ class TodoRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
-
-    override suspend fun getTodo(todoId: Int): Flow<Resource<Todo>> {
-        return flow {
-            val todoDetailData = todoDao.getTodoDetail(todoId).toTodo()
-
-            emit(Resource.Loading(todoDetailData))
-
-            try {
-                emit(Resource.Success(todoDetailData))
-            } catch (e: IOException) {
-                emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()),
-                        data = todoDetailData)
-                )
-            } catch (e: Exception) {
-                emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()),
-                        data = todoDetailData)
-                )
-            }
-        }.flowOn(Dispatchers.IO)
-    }
 }

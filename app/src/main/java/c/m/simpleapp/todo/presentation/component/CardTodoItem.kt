@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.RadioButtonChecked
-import androidx.compose.material.icons.filled.RadioButtonUnchecked
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Dangerous
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,12 +39,16 @@ fun CardTodoItem(
             Spacer(modifier = Modifier.weight(1F))
             Icon(
                 imageVector = if (complete) {
-                    Icons.Default.RadioButtonChecked
+                    Icons.Default.CheckCircle
                 } else {
-                    Icons.Default.RadioButtonUnchecked
+                    Icons.Default.Dangerous
                 },
                 contentDescription = null,
-                tint = MaterialTheme.colors.surface,
+                tint = if (complete) {
+                    Color.Green
+                } else {
+                    Color.Red
+                },
             )
         }
     }

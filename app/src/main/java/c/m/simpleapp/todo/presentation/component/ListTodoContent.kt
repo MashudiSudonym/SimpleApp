@@ -34,7 +34,7 @@ fun ListTodoContent(
                     .fillMaxWidth()
                     .padding(16.dp)
                     .clickable {
-                        navigator.navigate(TodoDetailScreenDestination) {
+                        navigator.navigate(TodoDetailScreenDestination(data)) {
                             popUpTo(ListTodoScreenDestination)
                         }
                     },
