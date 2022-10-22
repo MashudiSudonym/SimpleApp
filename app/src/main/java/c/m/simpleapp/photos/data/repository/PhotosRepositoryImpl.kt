@@ -59,26 +59,4 @@ class PhotosRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
-
-    override suspend fun getPhoto(photoId: Int): Flow<Resource<Photo>> {
-        return flow {
-            val photoDetailData = photosDao.getPhotosDetail(photoId).toPhoto()
-
-            emit(Resource.Loading(photoDetailData))
-
-            try {
-                emit(Resource.Success(photoDetailData))
-            } catch (e: IOException) {
-                emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()),
-                        data = photoDetailData)
-                )
-            } catch (e: Exception) {
-                emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()),
-                        data = photoDetailData)
-                )
-            }
-        }.flowOn(Dispatchers.IO)
-    }
 }

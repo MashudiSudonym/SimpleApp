@@ -59,26 +59,4 @@ class PostsRepositoryImpl @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
-
-    override suspend fun getPost(postId: Int): Flow<Resource<Post>> {
-        return flow {
-            val postDetailData = postsDao.getPostsDetail(postId).toPost()
-
-            emit(Resource.Loading(postDetailData))
-
-            try {
-                emit(Resource.Success(postDetailData))
-            } catch (e: IOException) {
-                emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()),
-                        data = postDetailData)
-                )
-            } catch (e: Exception) {
-                emit(
-                    Resource.Error(message = UIText.DynamicString(e.toString()),
-                        data = postDetailData)
-                )
-            }
-        }.flowOn(Dispatchers.IO)
-    }
 }

@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface PhotosRepository {
     suspend fun getListPhotos(): Flow<Resource<List<Photo>>>
-    suspend fun getPhoto(photoId: Int): Flow<Resource<Photo>>
 }
