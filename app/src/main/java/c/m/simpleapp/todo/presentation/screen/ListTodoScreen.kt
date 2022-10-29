@@ -8,13 +8,14 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import c.m.simpleapp.R
 import c.m.simpleapp.common.presentation.component.custom.*
 import c.m.simpleapp.common.presentation.component.util.AdaptiveCustomColor
@@ -27,6 +28,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @RootNavGraph(start = true)
 @Destination
 @Composable
@@ -36,7 +38,7 @@ fun ListTodoScreen(
 ) {
     val scaffoldState = rememberScaffoldState()
     val context = LocalContext.current
-    val listTodoUIState by todoViewModel.listTodoUIState.collectAsState()
+    val listTodoUIState by todoViewModel.listTodoUIState.collectAsStateWithLifecycle()
     val todoUIStatusEvent = todoViewModel.todoUIStatusEvent
 
     BottomNavigationContentWrapperCustom {
